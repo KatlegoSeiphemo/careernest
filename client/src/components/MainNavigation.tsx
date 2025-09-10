@@ -109,6 +109,22 @@ const MainNavigation = () => {
       icon: <MessageCircle className="h-4 w-4" />,
       description: "Join career-focused communities",
       category: "community"
+    },
+
+    // Tools & Resources
+    {
+      title: "MoMo Services",
+      href: "/momo-services",
+      icon: <CreditCard className="h-4 w-4" />,
+      description: "Pay for services with MoMo",
+      category: "tools"
+    },
+    {
+      title: "Mentor Payments",
+      href: "/mentor-payments",
+      icon: <TrendingUp className="h-4 w-4" />,
+      description: "Manage mentor earnings and payments",
+      category: "tools"
     }
   ];
 

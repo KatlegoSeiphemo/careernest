@@ -72,6 +72,74 @@ export interface TranslationKeys {
   registrationSuccess: string;
   paymentProcessing: string;
   serviceActivated: string;
+
+  // MoMo Services
+  momoServices: string;
+  securePayments: string;
+  secureEncrypted: string;
+  instantActivation: string;
+  availableServices: string;
+  selectServiceToPay: string;
+  momoRegisteredNumber: string;
+  payNow: string;
+  processing: string;
+  paymentInitiated: string;
+  checkPhoneForPrompt: string;
+  paymentSuccessful: string;
+  paymentFailedMessage: string;
+  paymentError: string;
+  transactionId: string;
+  pending: string;
+  completed: string;
+  failed: string;
+  active: string;
+  available: string;
+  selected: string;
+  select: string;
+  oneTime: string;
+  expires: string;
+  myServices: string;
+  fillAllFields: string;
+
+  // Mentor Payments
+  mentorPayments: string;
+  managePaymentsAndEarnings: string;
+  totalEarnings: string;
+  pendingPayments: string;
+  completedSessions: string;
+  fromLastMonth: string;
+  awaitingCollection: string;
+  thisMonth: string;
+  growth: string;
+  monthOverMonth: string;
+  mentorshipSessions: string;
+  manageSessionPayments: string;
+  paymentRequests: string;
+  trackPaymentRequests: string;
+  createRequest: string;
+  createPaymentRequest: string;
+  sendPaymentRequestToClient: string;
+  clientPhoneNumber: string;
+  clientMomoNumber: string;
+  amount: string;
+  description: string;
+  mentorshipSessionPayment: string;
+  creating: string;
+  requestPayment: string;
+  noSessionsYet: string;
+  noPaymentRequestsYet: string;
+  minutes: string;
+  scheduled: string;
+  created: string;
+  howItWorks: string;
+  enterClientDetails: string;
+  clientReceivesPaymentPrompt: string;
+  paymentProcessedAutomatically: string;
+  fundsTransferredToAccount: string;
+  paymentRequestSent: string;
+  clientWillReceivePrompt: string;
+  failedToCreateRequest: string;
+  failedToRequestPayment: string;
 }
 
 export const translations: Record<string, TranslationKeys> = {
@@ -141,6 +209,74 @@ export const translations: Record<string, TranslationKeys> = {
     registrationSuccess: 'Registration successful!',
     paymentProcessing: 'Processing your payment...',
     serviceActivated: 'Service activated successfully!',
+
+    // MoMo Services
+    momoServices: 'MoMo Services',
+    securePayments: 'Secure Payments',
+    secureEncrypted: 'Secure & Encrypted',
+    instantActivation: 'Instant Activation',
+    availableServices: 'Available Services',
+    selectServiceToPay: 'Select a service to pay',
+    momoRegisteredNumber: 'MoMo registered number',
+    payNow: 'Pay Now',
+    processing: 'Processing...',
+    paymentInitiated: 'Payment Initiated',
+    checkPhoneForPrompt: 'Check your phone for MoMo prompt',
+    paymentSuccessful: 'Payment Successful',
+    paymentFailedMessage: 'Payment failed. Please try again.',
+    paymentError: 'Payment error occurred',
+    transactionId: 'Transaction ID',
+    pending: 'Pending',
+    completed: 'Completed',
+    failed: 'Failed',
+    active: 'Active',
+    available: 'Available',
+    selected: 'Selected',
+    select: 'Select',
+    oneTime: 'One-time',
+    expires: 'Expires',
+    myServices: 'My Services',
+    fillAllFields: 'Please fill all required fields',
+
+    // Mentor Payments
+    mentorPayments: 'Mentor Payments',
+    managePaymentsAndEarnings: 'Manage your payments and earnings',
+    totalEarnings: 'Total Earnings',
+    pendingPayments: 'Pending Payments',
+    completedSessions: 'Completed Sessions',
+    fromLastMonth: 'from last month',
+    awaitingCollection: 'Awaiting collection',
+    thisMonth: 'This month',
+    growth: 'Growth',
+    monthOverMonth: 'Month over month',
+    mentorshipSessions: 'Mentorship Sessions',
+    manageSessionPayments: 'Manage session payments',
+    paymentRequests: 'Payment Requests',
+    trackPaymentRequests: 'Track your payment requests',
+    createRequest: 'Create Request',
+    createPaymentRequest: 'Create Payment Request',
+    sendPaymentRequestToClient: 'Send payment request to client',
+    clientPhoneNumber: 'Client Phone Number',
+    clientMomoNumber: 'Client MoMo number',
+    amount: 'Amount',
+    description: 'Description',
+    mentorshipSessionPayment: 'Mentorship session payment',
+    creating: 'Creating...',
+    requestPayment: 'Request Payment',
+    noSessionsYet: 'No sessions yet',
+    noPaymentRequestsYet: 'No payment requests yet',
+    minutes: 'minutes',
+    scheduled: 'Scheduled',
+    created: 'Created',
+    howItWorks: 'How it works',
+    enterClientDetails: 'Enter client details and amount',
+    clientReceivesPaymentPrompt: 'Client receives payment prompt on phone',
+    paymentProcessedAutomatically: 'Payment processed automatically',
+    fundsTransferredToAccount: 'Funds transferred to your account',
+    paymentRequestSent: 'Payment request sent',
+    clientWillReceivePrompt: 'Client will receive payment prompt',
+    failedToCreateRequest: 'Failed to create payment request',
+    failedToRequestPayment: 'Failed to request payment',
   },
   
   // French (Benin, Côte d'Ivoire, Guinea)

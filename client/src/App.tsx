@@ -20,6 +20,8 @@ import CoverLetterGenerator from "./pages/CoverLetterGenerator";
 import CareerPathwayGenerator from "./pages/CareerPathwayGenerator";
 import AiServices from "./pages/AiServices";
 import JobSearch from "./pages/JobSearch";
+import MoMoServices from "./pages/MoMoServices";
+import MentorPayments from "./pages/MentorPayments";
 
 const queryClient = new QueryClient();
 
@@ -69,6 +71,8 @@ function App() {
                 <Route path="/career-pathway" element={<CareerPathwayGenerator />} />
                 <Route path="/ai-services" element={<AiServices />} />
                 <Route path="/job-search" element={<JobSearch />} />
+                <Route path="/momo-services" element={<MoMoServices />} />
+                <Route path="/mentor-payments" element={<MentorPayments />} />
                 <Route path="*" element={<NotFound />} />
               </>
             )}

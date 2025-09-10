@@ -8,6 +8,7 @@ import cookieParser from "cookie-parser";
 import { careerPathwayService, type UserInterests } from "./services/careerPathwayService";
 import { chatbotService } from "./services/chatbotService";
 import { aiServicesService } from "./services/aiServicesService";
+import { mentorPaymentService } from "./services/mentorPaymentService";
 import { z } from "zod";
 
 const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key-change-in-production";
@@ -532,6 +533,98 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Get user cover letters error:", error);
       res.status(500).json({ message: "Failed to get user cover letters" });
+    }
+  });
+
+  // Mentor Payment Routes
+  app.get("/api/mentor/sessions", requireAuth, async (req, res) => {
+    try {
+      const mentorId = req.user!.id;
+      const sessions = await mentorPaymentService.getMentorSessions(mentorId);
+      res.json(sessions);
+    } catch (error) {
+      console.error("Get mentor sessions error:", error);
+      res.status(500).json({ message: "Failed to get mentor sessions" });
+    }
+  });
+
+  app.get("/api/mentor/payment-requests", requireAuth, async (req, res) => {
+    try {
+      const mentorId = req.user!.id;
+      const requests = await mentorPaymentService.getPaymentRequests(mentorId);
+      res.json(requests);
+    } catch (error) {
+      console.error("Get payment requests error:", error);
+      res.status(500).json({ message: "Failed to get payment requests" });
+    }
+  });
+
+  app.get("/api/mentor/earnings", requireAuth, async (req, res) => {
+    try {
+      const mentorId = req.user!.id;
+      const earnings = await mentorPaymentService.getEarningsStats(mentorId);
+      res.json(earnings);
+    } catch (error) {
+      console.error("Get earnings stats error:", error);
+      res.status(500).json({ message: "Failed to get earnings stats" });
+    }
+  });
+
+  app.post("/api/mentor/create-payment-request", requireAuth, async (req, res) => {
+    try {
+      const mentorId = req.user!.id;
+      const { clientPhone, amount, description } = req.body;
+
+      if (!clientPhone || !amount || !description) {
+        return res.status(400).json({ message: "Missing required fields" });
+      }
+
+      const result = await mentorPaymentService.createPaymentRequest(
+        mentorId,
+        clientPhone,
+        parseFloat(amount),
+        description
+      );
+
+      res.json(result);
+    } catch (error) {
+      console.error("Create payment request error:", error);
+      res.status(500).json({ message: "Failed to create payment request" });
+    }
+  });
+
+  app.post("/api/mentor/request-session-payment/:sessionId", requireAuth, async (req, res) => {
+    try {
+      const mentorId = req.user!.id;
+      const sessionId = parseInt(req.params.sessionId);
+
+      if (isNaN(sessionId)) {
+        return res.status(400).json({ message: "Invalid session ID" });
+      }
+
+      const result = await mentorPaymentService.requestSessionPayment(mentorId, sessionId);
+      res.json(result);
+    } catch (error) {
+      console.error("Request session payment error:", error);
+      res.status(500).json({ message: "Failed to request session payment" });
+    }
+  });
+
+  // MoMo webhook for payment status updates
+  app.post("/api/momo/webhook", async (req, res) => {
+    try {
+      const { transactionId, status } = req.body;
+
+      if (status === 'SUCCESSFUL') {
+        await mentorPaymentService.updatePaymentStatus(transactionId, 'paid');
+      } else if (status === 'FAILED') {
+        await mentorPaymentService.updatePaymentStatus(transactionId, 'failed');
+      }
+
+      res.status(200).json({ message: "Webhook processed" });
+    } catch (error) {
+      console.error("MoMo webhook error:", error);
+      res.status(500).json({ message: "Webhook processing failed" });
     }
   });
 

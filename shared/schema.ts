@@ -300,3 +300,36 @@ export type GeneratedCv = typeof generatedCvs.$inferSelect;
 export type GeneratedCoverLetter = typeof generatedCoverLetters.$inferSelect;
 export type JobListing = typeof jobListings.$inferSelect;
 export type JobAlertSubscription = typeof jobAlertSubscriptions.$inferSelect;
+
+// Mentorship Sessions
+export const mentorshipSessions = pgTable("mentorship_sessions", {
+  id: serial("id").primaryKey(),
+  mentorId: integer("mentor_id").references(() => users.id).notNull(),
+  clientId: integer("client_id").references(() => users.id).notNull(),
+  sessionType: text("session_type").notNull(), // "career_guidance", "interview_prep", "skill_development"
+  duration: integer("duration").notNull(), // in minutes
+  rate: text("rate").notNull(), // session fee
+  scheduledAt: timestamp("scheduled_at").notNull(),
+  status: text("status").notNull().default("scheduled"), // "scheduled", "completed", "cancelled"
+  paymentStatus: text("payment_status").notNull().default("pending"), // "pending", "paid", "failed"
+  notes: text("notes"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+// Payment Requests
+export const paymentRequests = pgTable("payment_requests", {
+  id: serial("id").primaryKey(),
+  mentorId: integer("mentor_id").references(() => users.id).notNull(),
+  clientPhone: text("client_phone").notNull(),
+  clientName: text("client_name"),
+  amount: text("amount").notNull(),
+  description: text("description").notNull(),
+  status: text("status").notNull().default("pending"), // "pending", "sent", "paid", "failed"
+  transactionId: text("transaction_id"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
+export type MentorshipSession = typeof mentorshipSessions.$inferSelect;
+export type PaymentRequest = typeof paymentRequests.$inferSelect;
